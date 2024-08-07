@@ -23,7 +23,7 @@ const requestNotificationPermission = async () => {
         if (permission !== "granted") {
             throw new Error("Notification permission not granted");
         } else {
-            new Notification("Notification permission granted");
+            new Notification("Notification from github");
         }
     } catch (error) {
         console.error("Failed to request notification permission:", error);
