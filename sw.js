@@ -107,6 +107,8 @@ const urlB64ToUint8Array = base64String => {
       console.log('Push event but no data')
     }
   })
+  console.log('service worker last line 1')
+
 // self.addEventListener('push', event => {
 //     const data = event.data ? event.data.json() : {};
 //     const options = {
