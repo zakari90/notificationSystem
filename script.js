@@ -36,14 +36,14 @@ const requestNotificationPermission = async () => {
     }
 };
 
-// const showLocalNotification = (title, body, swRegistration) => {
-//     const options = {
-//         body,
-//         // You can add more properties like icon, image, vibrate, etc.
-//     };
-//     console.log("Showing notification with options:", options);
-//     swRegistration.showNotification(title, options);
-// };
+const showLocalNotification = (title, body, swRegistration) => {
+    const options = {
+        body,
+        // You can add more properties like icon, image, vibrate, etc.
+    };
+    console.log("Showing notification with options:", options);
+    swRegistration.showNotification(title, options);
+};
 
 const main = async () => {
     try {
@@ -56,7 +56,7 @@ const main = async () => {
         const swRegistration = await registerServiceWorker();
         console.log("Service Worker registered");
 
-        // showLocalNotification('This is the title', 'This is the message', swRegistration);
+        showLocalNotification('This is the title', 'This is the message', swRegistration);
     } catch (error) {
         console.error("An error occurred:", error);
     }
