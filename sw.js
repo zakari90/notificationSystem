@@ -21,6 +21,8 @@
 
 self.addEventListener('activate', async () => {
     // This will be called only once when the service worker is activated.
+console.log("hello from ------self.addEventListener('activate' ----- ");
+    
     try {
       const options = {}
       const subscription = await self.registration.pushManager.subscribe(options)
