@@ -10,6 +10,7 @@ const checkPermissions = () => {
 const registerServiceWorker = async () => {
     try {
         const registration = await navigator.serviceWorker.register("/sw.js");
+        console.log('Service Worker registered:', registration);
         return registration;
     } catch (error) {
         console.error("Service Worker registration failed:", error);
@@ -23,7 +24,7 @@ const requestNotificationPermission = async () => {
         if (permission !== "granted") {
             throw new Error("Notification permission not granted");
         } else {
-            new Notification("Notification from github");
+            console.log("Notification permission granted.");
         }
     } catch (error) {
         console.error("Failed to request notification permission:", error);
@@ -31,12 +32,27 @@ const requestNotificationPermission = async () => {
     }
 };
 
+const showLocalNotification = (title, body, swRegistration) => {
+    const options = {
+        body,
+        // You can add more properties like icon, image, vibrate, etc.
+    };
+    console.log("Showing notification with options:", options);
+    swRegistration.showNotification(title, options);
+};
+
 const main = async () => {
     try {
         checkPermissions();
+        console.log("Service Worker and Notification are supported");
+        
         await requestNotificationPermission();
-        await registerServiceWorker();
-        console.log("Service Worker registered successfully");
+        console.log("Notification permission granted");
+
+        const swRegistration = await registerServiceWorker();
+        console.log("Service Worker registered");
+
+        showLocalNotification('This is the title', 'This is the message', swRegistration);
     } catch (error) {
         console.error("An error occurred:", error);
     }
