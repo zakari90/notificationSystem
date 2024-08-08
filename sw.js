@@ -88,22 +88,30 @@ self.addEventListener('activate', async (event) => {
     })());
 });
 
-self.addEventListener('push', event => {
-    const data = event.data ? event.data.json() : {};
-    const options = {
-        body: data.body || 'Default notification body',
-        icon: 'icon.png', // Ensure this path is correct
-        badge: 'badge.png' // Ensure this path is correct
-    };
+self.addEventListener('push', function(event) {
+    if (event.data) {
+      console.log('Push event!! ', event.data.text())
+    } else {
+      console.log('Push event but no data')
+    }
+  })
 
-    event.waitUntil(
-        self.registration.showNotification(data.title || 'Default Title', options)
-    );
-});
+// self.addEventListener('push', event => {
+//     const data = event.data ? event.data.json() : {};
+//     const options = {
+//         body: data.body || 'Default notification body',
+//         icon: 'icon.png', // Ensure this path is correct
+//         badge: 'badge.png' // Ensure this path is correct
+//     };
 
-self.addEventListener('notificationclick', event => {
-    event.notification.close();
-    event.waitUntil(
-        clients.openWindow('/')
-    );
-});
+//     event.waitUntil(
+//         self.registration.showNotification(data.title || 'Default Title', options)
+//     );
+// });
+
+// self.addEventListener('notificationclick', event => {
+//     event.notification.close();
+//     event.waitUntil(
+//         clients.openWindow('/')
+//     );
+// });
