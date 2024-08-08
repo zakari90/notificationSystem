@@ -19,7 +19,7 @@
 //     );
 // });
 
-//   const subscription = await self.registration.pushManager.getSubscription()
+  const subscription = await self.registration.pushManager.getSubscription()
 
 // urlB64ToUint8Array is a magic function that will encode the base64 public key
 // to Array buffer which is needed by the subscription option
@@ -45,7 +45,7 @@
 //     }
 //   })
 
-// console.log("subscription ----->" + subscription);
+console.log("subscription ----->" + subscription);
 // console.log("Service Worker ended2");
 
 
