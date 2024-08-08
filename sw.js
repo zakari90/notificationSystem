@@ -46,7 +46,7 @@ const urlB64ToUint8Array = base64String => {
   })
 
 console.log("subscription ----->" + subscription);
-console.log("Service Worker ended");
+console.log("Service Worker ended2");
 
 
 const publicKey = "BHHMHf-ODDQ99rS7-tyHt0QnB1-ntsVzFvebI0f4zZocT5kpYwsE-fZlws9_WJscx8NQ_cioihK8BLqABDhTw1g"
