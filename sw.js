@@ -79,20 +79,27 @@ const urlB64ToUint8Array = base64String => {
     })
     return response.json()
   }
-  self.addEventListener('activate', async () => {
-    // This will be called only once when the service worker is activated.
-    try {
-      const applicationServerKey = urlB64ToUint8Array(
-        publicKey
-      )
-      const options = { applicationServerKey, userVisibleOnly: true }
-      const subscription = await self.registration.pushManager.subscribe(options)
-      const response = await saveSubscription(subscription)
-      console.log(response)
-    } catch (err) {
-      console.log('Error', err)
-    }
-  })
+
+  self.addEventListener('activate', async (event) => {
+    event.waitUntil((async () => {
+        try {
+            const applicationServerKey = urlB64ToUint8Array(publicKey);
+            const options = { applicationServerKey, userVisibleOnly: true };
+
+            // Check if there's an existing subscription
+            let subscription = await self.registration.pushManager.getSubscription();
+            if (!subscription) {
+                // If not, subscribe the user
+                subscription = await self.registration.pushManager.subscribe(options);
+                console.log("Subscribed successfully: ", JSON.stringify(subscription));
+            } else {
+                console.log("Already subscribed: ", JSON.stringify(subscription));
+            }
+        } catch (err) {
+            console.log('Error during subscription:', err);
+        }
+    })());
+});
   self.addEventListener('push', function(event) {
     if (event.data) {
       console.log('Push event!! ', event.data.text())
