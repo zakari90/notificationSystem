@@ -31,4 +31,8 @@ console.log("hello from ------self.addEventListener('activate' ----- ");
       console.log('Error', err)
     }
   })
+
+  const subscription = await self.registration.pushManager.getSubscription()
+
+console.log("subscription ----->" + subscription);
 console.log("Service Worker ended");
