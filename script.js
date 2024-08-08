@@ -21,6 +21,10 @@ const registerServiceWorker = async () => {
 const requestNotificationPermission = async () => {
     try {
         const permission = await Notification.requestPermission();
+        // value of permission can be 'granted', 'default', 'denied'
+        // granted: user has accepted the request
+        // default: user has dismissed the notification permission popup by clicking on x
+        // denied: user has denied the request.
         if (permission !== "granted") {
             throw new Error("Notification permission not granted");
         } else {
@@ -32,14 +36,14 @@ const requestNotificationPermission = async () => {
     }
 };
 
-const showLocalNotification = (title, body, swRegistration) => {
-    const options = {
-        body,
-        // You can add more properties like icon, image, vibrate, etc.
-    };
-    console.log("Showing notification with options:", options);
-    swRegistration.showNotification(title, options);
-};
+// const showLocalNotification = (title, body, swRegistration) => {
+//     const options = {
+//         body,
+//         // You can add more properties like icon, image, vibrate, etc.
+//     };
+//     console.log("Showing notification with options:", options);
+//     swRegistration.showNotification(title, options);
+// };
 
 const main = async () => {
     try {
@@ -52,7 +56,7 @@ const main = async () => {
         const swRegistration = await registerServiceWorker();
         console.log("Service Worker registered");
 
-        showLocalNotification('This is the title', 'This is the message', swRegistration);
+        // showLocalNotification('This is the title', 'This is the message', swRegistration);
     } catch (error) {
         console.error("An error occurred:", error);
     }
