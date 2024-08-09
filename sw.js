@@ -1,5 +1,3 @@
-  const subscription = await self.registration.pushManager.getSubscription()
-console.log("subscription ----->" + subscription);
 
 // const publicKey = "BHHMHf-ODDQ99rS7-tyHt0QnB1-ntsVzFvebI0f4zZocT5kpYwsE-fZlws9_WJscx8NQ_cioihK8BLqABDhTw1g"
 
@@ -65,6 +63,9 @@ self.addEventListener('push', event => {
         self.registration.showNotification(data.title || 'Default Title', options)
     );
 });
+
+// const subscription = await self.registration.pushManager.getSubscription()
+// console.log("subscription ----->" + subscription);
 
 // self.addEventListener('notificationclick', event => {
 //     event.notification.close();
