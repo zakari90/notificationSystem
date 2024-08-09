@@ -52,9 +52,9 @@ const main = async () => {
         
         await requestNotificationPermission();
         console.log("Notification permission granted");
-
-        const swRegistration = await registerServiceWorker();
+        await registerServiceWorker();
         console.log("Service Worker registered");
+        // const swRegistration = await registerServiceWorker();
         // showLocalNotification('This is the title', 'This is the message', swRegistration);
 
     } catch (error) {
