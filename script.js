@@ -55,8 +55,8 @@ const main = async () => {
 
         const swRegistration = await registerServiceWorker();
         console.log("Service Worker registered");
-
         // showLocalNotification('This is the title', 'This is the message', swRegistration);
+
     } catch (error) {
         console.error("An error occurred:", error);
     }
